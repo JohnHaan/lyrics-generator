@@ -84,6 +84,48 @@
   #status { margin-top: 16px; white-space: pre-wrap; }
   #status.error { color: #c00; }
   #status.success { color: #060; }
+
+  hr.section-divider { margin: 40px 0; border: none; border-top: 1px solid #ddd; }
+
+  .upload-section h2 { font-size: 1.1rem; margin-bottom: 4px; }
+  .upload-section .desc { margin-top: 0; margin-bottom: 16px; }
+
+  .upload-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .upload-row label {
+    font-size: 0.9rem;
+    color: #444;
+    min-width: 90px;
+  }
+  .upload-row input[type="text"],
+  .upload-row input[type="password"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 8px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+  }
+  .upload-row .token-note {
+    flex-basis: 100%;
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  #sampleDownload, #uploadSong {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+  #uploadSong:disabled { cursor: default; opacity: 0.6; }
+
+  #uploadStatus { margin-top: 12px; white-space: pre-wrap; }
+  #uploadStatus.error { color: #c00; }
+  #uploadStatus.success { color: #060; }
 </style>
 </head>
 <body>
@@ -106,6 +148,42 @@
 
   <button id="generate">콘티 다운로드</button>
   <div id="status"></div>
+
+  <hr class="section-divider" />
+
+  <section class="upload-section">
+    <h2>새 가사 등록</h2>
+    <p class="desc">
+      샘플 파일을 내려받아 같은 형식(슬라이드 1장 = 제목, 그 다음부터 슬라이드 1장당
+      구절 하나)으로 곡을 만든 뒤 업로드하세요. 업로드한 슬라이드 순서가 곧 그 곡의
+      재생 순서가 됩니다. 반복 구간이 필요하면 업로드 후 GitHub에서 직접 수정할 수 있습니다.
+    </p>
+
+    <a id="sampleDownload" href="template/sample.pptx" download="sample.pptx">샘플 다운로드</a>
+
+    <div class="upload-row" style="margin-top: 20px;">
+      <label for="songTitle">곡 제목</label>
+      <input type="text" id="songTitle" placeholder="예: 주 은혜라" />
+    </div>
+    <div class="upload-row">
+      <label for="songFile">pptx 파일</label>
+      <input type="file" id="songFile" accept=".pptx" />
+    </div>
+    <div class="upload-row">
+      <label for="githubToken">GitHub Token</label>
+      <input type="password" id="githubToken" placeholder="repo 쓰기 권한이 있는 Personal Access Token" />
+      <label style="min-width: auto; display: flex; align-items: center; gap: 4px;">
+        <input type="checkbox" id="rememberToken" /> 이 브라우저에 저장
+      </label>
+      <div class="token-note">
+        토큰은 이 브라우저에만 저장되며 서버로 전송되지 않습니다. 공용 컴퓨터에서는
+        "저장"을 체크하지 마세요.
+      </div>
+    </div>
+
+    <button id="uploadSong">업로드</button>
+    <div id="uploadStatus"></div>
+  </section>
 
   <script src="vendor/jszip.min.js"></script>
   <script type="module" src="src/app.js"></script>

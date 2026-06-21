@@ -89,5 +89,13 @@ export function createSongLibrary({ JSZip, baseUrl = "songs/" } = {}) {
     return promise;
   }
 
-  return { fetchManifest, listSongs, findSongByTitle, loadSong };
+  /** 새로 커밋한 곡을 바로 목록에 반영하기 위해 캐시를 전부 비운다. */
+  function reset() {
+    manifestPromise = null;
+    songsPromise = null;
+    songJsonCache.clear();
+    loadedSongCache.clear();
+  }
+
+  return { fetchManifest, listSongs, findSongByTitle, loadSong, reset };
 }

@@ -1,5 +1,7 @@
 import { createSongLibrary } from "./songLibrary.js";
 import { buildSetlist } from "./pptxMerge.js";
+import { buildSongFromUpload } from "./songUpload.js";
+import { commitNewSong, TOKEN_STORAGE_KEY } from "./githubCommit.js";
 
 const songLibrary = createSongLibrary({ JSZip: window.JSZip });
 
@@ -7,6 +9,13 @@ const availableEl = document.getElementById("availableSongs");
 const contiEl = document.getElementById("contiList");
 const statusEl = document.getElementById("status");
 const generateBtn = document.getElementById("generate");
+
+const songTitleInput = document.getElementById("songTitle");
+const songFileInput = document.getElementById("songFile");
+const githubTokenInput = document.getElementById("githubToken");
+const rememberTokenCheckbox = document.getElementById("rememberToken");
+const uploadBtn = document.getElementById("uploadSong");
+const uploadStatusEl = document.getElementById("uploadStatus");
 
 let contiTitles = []; // 사용자가 구성한 콘티 순서
 
@@ -170,6 +179,76 @@ generateBtn.addEventListener("click", async () => {
     setStatus("오류: " + err.message, "error");
   } finally {
     generateBtn.disabled = false;
+  }
+});
+
+// ---- 새 가사 등록 ----
+
+function setUploadStatus(message, kind) {
+  uploadStatusEl.textContent = message;
+  uploadStatusEl.className = kind || "";
+}
+
+const savedToken = localStorage.getItem(TOKEN_STORAGE_KEY);
+if (savedToken) {
+  githubTokenInput.value = savedToken;
+  rememberTokenCheckbox.checked = true;
+}
+
+uploadBtn.addEventListener("click", async () => {
+  const title = songTitleInput.value.trim();
+  const file = songFileInput.files[0];
+  const token = githubTokenInput.value.trim();
+
+  if (!title) {
+    setUploadStatus("곡 제목을 입력해주세요.", "error");
+    return;
+  }
+  if (!file) {
+    setUploadStatus("pptx 파일을 선택해주세요.", "error");
+    return;
+  }
+  if (!token) {
+    setUploadStatus("GitHub Token을 입력해주세요.", "error");
+    return;
+  }
+
+  uploadBtn.disabled = true;
+  setUploadStatus("업로드하는 중...");
+
+  try {
+    if (rememberTokenCheckbox.checked) {
+      localStorage.setItem(TOKEN_STORAGE_KEY, token);
+    } else {
+      localStorage.removeItem(TOKEN_STORAGE_KEY);
+    }
+
+    const existing = await songLibrary.findSongByTitle(title);
+    if (existing) {
+      throw new Error(`이미 등록된 제목입니다: "${title}"`);
+    }
+
+    const fileBuffer = await file.arrayBuffer();
+    const { songJson, pptxArrayBuffer } = await buildSongFromUpload(
+      fileBuffer,
+      title,
+      window.JSZip
+    );
+
+    const { slug } = await commitNewSong({ songJson, pptxArrayBuffer, token });
+
+    setUploadStatus(
+      `완료! "${title}"을 ${slug}로 등록했습니다. GitHub Pages가 다시 배포되는 데 1~2분 ` +
+        `걸리니, 잠시 후 페이지를 새로고침하면 왼쪽 목록에 나타납니다.`,
+      "success"
+    );
+    songTitleInput.value = "";
+    songFileInput.value = "";
+    songLibrary.reset();
+  } catch (err) {
+    setUploadStatus("오류: " + err.message, "error");
+  } finally {
+    uploadBtn.disabled = false;
   }
 });
 
