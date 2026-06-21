@@ -1,0 +1,48 @@
+{
+  "title": "함께 지어져 가네",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "title",
+      "index": 0,
+      "label": "title"
+    },
+    {
+      "key": "A1",
+      "index": 1,
+      "label": "A1"
+    },
+    {
+      "key": "A2",
+      "index": 2,
+      "label": "A2"
+    },
+    {
+      "key": "B1",
+      "index": 3,
+      "label": "B1"
+    },
+    {
+      "key": "B2",
+      "index": 4,
+      "label": "B2"
+    },
+    {
+      "key": "interlude",
+      "index": 5,
+      "label": "interlude"
+    }
+  ],
+  "order": [
+    "title",
+    "A1",
+    "A2",
+    "B1",
+    "B2",
+    "interlude",
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+  ]
+}

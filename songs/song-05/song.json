@@ -1,0 +1,51 @@
+{
+  "title": "예수 나를 오라 하네",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "title",
+      "index": 0,
+      "label": "title"
+    },
+    {
+      "key": "A1",
+      "index": 1,
+      "label": "A1"
+    },
+    {
+      "key": "B1",
+      "index": 2,
+      "label": "B1"
+    },
+    {
+      "key": "A2",
+      "index": 3,
+      "label": "A2"
+    },
+    {
+      "key": "C",
+      "index": 4,
+      "label": "C"
+    },
+    {
+      "key": "D",
+      "index": 5,
+      "label": "D"
+    },
+    {
+      "key": "closing",
+      "index": 6,
+      "label": "closing"
+    }
+  ],
+  "order": [
+    "title",
+    "A1",
+    "B1",
+    "A2",
+    "B1",
+    "C",
+    "D",
+    "closing"
+  ]
+}

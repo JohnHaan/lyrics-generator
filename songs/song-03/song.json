@@ -1,0 +1,41 @@
+{
+  "title": "실로암",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "title",
+      "index": 0,
+      "label": "title"
+    },
+    {
+      "key": "A1",
+      "index": 1,
+      "label": "A1"
+    },
+    {
+      "key": "A2",
+      "index": 2,
+      "label": "A2"
+    },
+    {
+      "key": "B",
+      "index": 3,
+      "label": "B"
+    },
+    {
+      "key": "interlude",
+      "index": 4,
+      "label": "interlude"
+    }
+  ],
+  "order": [
+    "title",
+    "A1",
+    "A2",
+    "B",
+    "interlude",
+    "A1",
+    "A2",
+    "B"
+  ]
+}

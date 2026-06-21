@@ -1,0 +1,60 @@
+{
+  "title": "생명 주께 있네 + 멈출 수 없네",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "title",
+      "index": 0,
+      "label": "title"
+    },
+    {
+      "key": "A",
+      "index": 1,
+      "label": "A"
+    },
+    {
+      "key": "B",
+      "index": 2,
+      "label": "B"
+    },
+    {
+      "key": "A_outro",
+      "index": 3,
+      "label": "A_outro"
+    },
+    {
+      "key": "C1",
+      "index": 4,
+      "label": "C1"
+    },
+    {
+      "key": "C2",
+      "index": 5,
+      "label": "C2"
+    },
+    {
+      "key": "D",
+      "index": 6,
+      "label": "D"
+    },
+    {
+      "key": "E",
+      "index": 7,
+      "label": "E"
+    }
+  ],
+  "order": [
+    "title",
+    "A",
+    "B",
+    "A",
+    "B",
+    "A_outro",
+    "C1",
+    "C2",
+    "D",
+    "E",
+    "D",
+    "E"
+  ]
+}

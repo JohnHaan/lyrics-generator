@@ -1,0 +1,60 @@
+{
+  "title": "나는 주를 섬기는 것에 + 이것이 나의 간증이요",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "title",
+      "index": 0,
+      "label": "title"
+    },
+    {
+      "key": "A1",
+      "index": 1,
+      "label": "A1"
+    },
+    {
+      "key": "A1b",
+      "index": 2,
+      "label": "A1b"
+    },
+    {
+      "key": "A2",
+      "index": 3,
+      "label": "A2"
+    },
+    {
+      "key": "A2b",
+      "index": 4,
+      "label": "A2b"
+    },
+    {
+      "key": "B1",
+      "index": 5,
+      "label": "B1"
+    },
+    {
+      "key": "B2",
+      "index": 6,
+      "label": "B2"
+    },
+    {
+      "key": "C",
+      "index": 7,
+      "label": "C"
+    }
+  ],
+  "order": [
+    "title",
+    "A1",
+    "A1b",
+    "A2",
+    "A2b",
+    "B1",
+    "B2",
+    "A2",
+    "A2b",
+    "B1",
+    "B2",
+    "C"
+  ]
+}
