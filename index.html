@@ -3,16 +3,50 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>찬양 콘티 생성기</title>
+<title>인지저스팀 가사 제조기</title>
 <style>
+  :root {
+    --ij-purple: #5E55A0;
+    --ij-blue: #3E8FB0;
+    --ij-green: #4FAE7C;
+    --ij-gradient: linear-gradient(90deg, var(--ij-purple), var(--ij-blue), var(--ij-green));
+  }
+
   body {
     font-family: -apple-system, "Apple SD Gothic Neo", "맑은 고딕", sans-serif;
     max-width: 960px;
-    margin: 40px auto;
+    margin: 0 auto 40px;
     padding: 0 16px;
     color: #222;
+    background: #fff;
   }
-  h1 { font-size: 1.4rem; }
+
+  .top-bar {
+    height: 6px;
+    background: var(--ij-gradient);
+    margin: 0 -16px 28px;
+  }
+
+  header.brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  header.brand img.logo {
+    height: 48px;
+    width: auto;
+  }
+  header.brand h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    background: var(--ij-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--ij-blue); /* 그래디언트 텍스트 미지원 브라우저용 대체 색 */
+  }
+
   p.desc { color: #555; line-height: 1.5; margin-bottom: 24px; }
 
   .columns {
@@ -25,7 +59,7 @@
   }
   .column h2 {
     font-size: 1rem;
-    color: #444;
+    color: var(--ij-purple);
     margin: 0 0 8px;
   }
   .box {
@@ -51,10 +85,11 @@
   .song-card:active { cursor: grabbing; }
   .song-card.dragging { opacity: 0.4; }
 
-  #availableSongs .song-card:hover { background: #f0f6ff; border-color: #8ab4f8; }
+  #availableSongs .song-card:hover { background: #f1effa; border-color: var(--ij-purple); }
 
   #contiList .song-card .order-num {
-    color: #888;
+    color: var(--ij-blue);
+    font-weight: 600;
     font-size: 0.85rem;
     min-width: 1.5em;
   }
@@ -70,24 +105,38 @@
   }
   #contiList .song-card .remove-btn:hover { color: #c00; }
 
-  .box.drag-over { background: #eef5ff; border-color: #8ab4f8; }
+  .box.drag-over { background: #eef6f1; border-color: var(--ij-green); }
   .empty-hint { color: #999; font-size: 0.9rem; padding: 12px; text-align: center; }
 
-  #generate {
+  .btn-brand {
     margin-top: 16px;
-    padding: 10px 20px;
+    padding: 10px 22px;
     font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    background: var(--ij-gradient);
   }
-  #generate:disabled { cursor: default; opacity: 0.6; }
+  .btn-brand:disabled { cursor: default; opacity: 0.5; }
+  .btn-brand:hover:not(:disabled) { filter: brightness(1.08); }
 
   #status { margin-top: 16px; white-space: pre-wrap; }
   #status.error { color: #c00; }
-  #status.success { color: #060; }
+  #status.success { color: var(--ij-green); font-weight: 600; }
 
-  hr.section-divider { margin: 40px 0; border: none; border-top: 1px solid #ddd; }
+  hr.section-divider {
+    margin: 40px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+  }
 
-  .upload-section h2 { font-size: 1.1rem; margin-bottom: 4px; }
+  .upload-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    color: var(--ij-purple);
+  }
   .upload-section .desc { margin-top: 0; margin-bottom: 16px; }
 
   .upload-row {
@@ -109,6 +158,13 @@
     padding: 8px;
     font-size: 0.95rem;
     box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .upload-row input[type="text"]:focus,
+  .upload-row input[type="password"]:focus {
+    outline: none;
+    border-color: var(--ij-blue);
   }
   .upload-row .token-note {
     flex-basis: 100%;
@@ -116,20 +172,44 @@
     color: #888;
   }
 
-  #sampleDownload, #uploadSong {
+  #sampleDownload {
+    display: inline-block;
     padding: 8px 16px;
     font-size: 0.95rem;
     cursor: pointer;
+    color: var(--ij-blue);
+    border: 1px solid var(--ij-blue);
+    border-radius: 6px;
+    text-decoration: none;
   }
-  #uploadSong:disabled { cursor: default; opacity: 0.6; }
+  #sampleDownload:hover { background: #eaf3f7; }
+
+  #uploadSong {
+    padding: 8px 18px;
+    font-size: 0.95rem;
+  }
 
   #uploadStatus { margin-top: 12px; white-space: pre-wrap; }
   #uploadStatus.error { color: #c00; }
-  #uploadStatus.success { color: #060; }
+  #uploadStatus.success { color: var(--ij-green); font-weight: 600; }
+
+  footer.brand-footer {
+    margin-top: 48px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    color: #aaa;
+    font-size: 0.8rem;
+    text-align: center;
+  }
 </style>
 </head>
 <body>
-  <h1>찬양 콘티 생성기</h1>
+  <div class="top-bar"></div>
+
+  <header class="brand">
+    <img class="logo" src="assets/injesus-logo.jpeg" alt="인지저스 로고" />
+    <h1>인지저스팀 가사 제조기</h1>
+  </header>
   <p class="desc">
     왼쪽 목록에서 곡을 오른쪽으로 드래그(또는 클릭)해서 순서대로 콘티를 구성하세요.
     오른쪽 목록 안에서도 드래그로 순서를 바꿀 수 있습니다.
@@ -146,7 +226,7 @@
     </div>
   </div>
 
-  <button id="generate">콘티 다운로드</button>
+  <button id="generate" class="btn-brand">콘티 다운로드</button>
   <div id="status"></div>
 
   <hr class="section-divider" />
@@ -181,9 +261,11 @@
       </div>
     </div>
 
-    <button id="uploadSong">업로드</button>
+    <button id="uploadSong" class="btn-brand">업로드</button>
     <div id="uploadStatus"></div>
   </section>
+
+  <footer class="brand-footer">인지저스팀 (InJesus)</footer>
 
   <script src="vendor/jszip.min.js"></script>
   <script type="module" src="src/app.js"></script>
