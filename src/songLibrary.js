@@ -1,32 +1,69 @@
-// /songs/manifest.json을 불러와 제목으로 곡을 찾고, 실제로 콘티에 쓰이는 곡만
-// song.json/song.pptx를 지연 로드(+캐시)한다. 제목 매칭은 항상 정확히 일치.
+// /songs/manifest.json은 곡 폴더 경로 목록만 가지고 있고, 표시용 제목은 항상
+// 각 곡의 song.json에서 직접 읽어온다 (manifest에 title을 따로 캐싱해두면
+// song.json을 고쳐도 manifest를 재생성하기 전까지 화면과 실제 데이터가
+//어긋날 수 있어서, 그 어긋남 자체를 구조적으로 없앤다).
 
 export function createSongLibrary({ JSZip, baseUrl = "songs/" } = {}) {
   let manifestPromise = null;
-  const songCache = new Map(); // title -> Promise<{ songJson, zip }>
+  let songsPromise = null; // [{ title, path }] - song.json을 직접 읽어 만든 목록
+  const songJsonCache = new Map(); // path -> Promise<songJson>
+  const loadedSongCache = new Map(); // title -> Promise<{ songJson, zip }>
 
   function resolveUrl(path) {
     return new URL(path, new URL(baseUrl, document.baseURI));
   }
 
+  async function fetchJson(url, errorMessage) {
+    const res = await fetch(url, { cache: "no-cache" });
+    if (!res.ok) throw new Error(errorMessage);
+    return res.json();
+  }
+
   async function fetchManifest() {
     if (!manifestPromise) {
-      manifestPromise = fetch(resolveUrl("manifest.json")).then((res) => {
-        if (!res.ok) throw new Error("곡 목록(manifest.json)을 불러오지 못했습니다");
-        return res.json();
-      });
+      manifestPromise = fetchJson(
+        resolveUrl("manifest.json"),
+        "곡 목록(manifest.json)을 불러오지 못했습니다"
+      );
     }
     return manifestPromise;
   }
 
+  function fetchSongJson(path) {
+    if (!songJsonCache.has(path)) {
+      songJsonCache.set(
+        path,
+        fetchJson(resolveUrl(path), `"${path}"의 song.json을 불러오지 못했습니다`)
+      );
+    }
+    return songJsonCache.get(path);
+  }
+
+  /** 등록된 곡 목록을 [{ title, path }] 형태로 반환한다. title은 매 호출마다
+   * song.json에서 새로 읽으므로 항상 실제 데이터와 일치한다. */
+  async function listSongs() {
+    if (!songsPromise) {
+      songsPromise = (async () => {
+        const manifest = await fetchManifest();
+        return Promise.all(
+          manifest.songs.map(async (path) => {
+            const songJson = await fetchSongJson(path);
+            return { title: songJson.title, path };
+          })
+        );
+      })();
+    }
+    return songsPromise;
+  }
+
   async function findSongByTitle(title) {
-    const manifest = await fetchManifest();
-    return manifest.songs.find((s) => s.title === title) || null;
+    const songs = await listSongs();
+    return songs.find((s) => s.title === title) || null;
   }
 
   async function loadSong(title) {
-    if (songCache.has(title)) {
-      return songCache.get(title);
+    if (loadedSongCache.has(title)) {
+      return loadedSongCache.get(title);
     }
 
     const promise = (async () => {
@@ -36,13 +73,10 @@ export function createSongLibrary({ JSZip, baseUrl = "songs/" } = {}) {
       }
 
       const songJsonUrl = resolveUrl(ref.path);
-      const songJson = await fetch(songJsonUrl).then((res) => {
-        if (!res.ok) throw new Error(`"${title}"의 song.json을 불러오지 못했습니다`);
-        return res.json();
-      });
+      const songJson = await fetchSongJson(ref.path);
 
       const pptxUrl = new URL(songJson.sourceFile, songJsonUrl);
-      const pptxBytes = await fetch(pptxUrl).then((res) => {
+      const pptxBytes = await fetch(pptxUrl, { cache: "no-cache" }).then((res) => {
         if (!res.ok) throw new Error(`"${title}"의 song.pptx를 불러오지 못했습니다`);
         return res.arrayBuffer();
       });
@@ -51,9 +85,9 @@ export function createSongLibrary({ JSZip, baseUrl = "songs/" } = {}) {
       return { songJson, zip };
     })();
 
-    songCache.set(title, promise);
+    loadedSongCache.set(title, promise);
     return promise;
   }
 
-  return { fetchManifest, findSongByTitle, loadSong };
+  return { fetchManifest, listSongs, findSongByTitle, loadSong };
 }

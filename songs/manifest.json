@@ -1,24 +1,9 @@
 {
   "songs": [
-    {
-      "title": "함께 지어져 가네",
-      "path": "song-01/song.json"
-    },
-    {
-      "title": "생명 주께 있네+멈출 수 없네",
-      "path": "song-02/song.json"
-    },
-    {
-      "title": "실로암",
-      "path": "song-03/song.json"
-    },
-    {
-      "title": "나는 주를 섬기는 것에+이것이 나의 간증이요",
-      "path": "song-04/song.json"
-    },
-    {
-      "title": "예수 나를 오라 하네",
-      "path": "song-05/song.json"
-    }
+    "song-01/song.json",
+    "song-02/song.json",
+    "song-03/song.json",
+    "song-04/song.json",
+    "song-05/song.json"
   ]
 }

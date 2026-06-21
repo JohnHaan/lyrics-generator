@@ -178,8 +178,8 @@ generateBtn.addEventListener("click", async () => {
 async function init() {
   renderConti();
   try {
-    const manifest = await songLibrary.fetchManifest();
-    renderAvailableSongs(manifest.songs);
+    const songs = await songLibrary.listSongs();
+    renderAvailableSongs(songs);
   } catch (err) {
     availableEl.innerHTML = `<div class="empty-hint">곡 목록을 불러오지 못했습니다: ${err.message}</div>`;
   }
