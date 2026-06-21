@@ -13,39 +13,28 @@
       "label": "A1"
     },
     {
-      "key": "B1",
+      "key": "A2",
       "index": 2,
-      "label": "B1"
+      "label": "A2"
     },
     {
-      "key": "A2",
+      "key": "B",
       "index": 3,
-      "label": "A2"
+      "label": "B"
     },
     {
       "key": "C",
       "index": 4,
       "label": "C"
-    },
-    {
-      "key": "D",
-      "index": 5,
-      "label": "D"
-    },
-    {
-      "key": "closing",
-      "index": 6,
-      "label": "closing"
     }
   ],
   "order": [
     "title",
     "A1",
-    "B1",
+    "B",
     "A2",
-    "B1",
+    "B",
     "C",
-    "D",
-    "closing"
+    "B"
   ]
 }

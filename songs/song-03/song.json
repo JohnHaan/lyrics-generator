@@ -21,11 +21,6 @@
       "key": "B",
       "index": 3,
       "label": "B"
-    },
-    {
-      "key": "interlude",
-      "index": 4,
-      "label": "interlude"
     }
   ],
   "order": [
@@ -33,7 +28,6 @@
     "A1",
     "A2",
     "B",
-    "interlude",
     "A1",
     "A2",
     "B"

@@ -18,31 +18,25 @@
       "label": "A2"
     },
     {
-      "key": "B1",
+      "key": "Ba",
       "index": 3,
-      "label": "B1"
+      "label": "Ba"
     },
     {
-      "key": "B2",
+      "key": "Bb",
       "index": 4,
-      "label": "B2"
-    },
-    {
-      "key": "interlude",
-      "index": 5,
-      "label": "interlude"
+      "label": "Bb"
     }
   ],
   "order": [
     "title",
     "A1",
     "A2",
-    "B1",
-    "B2",
-    "interlude",
+    "Ba",
+    "Bb",
     "A1",
     "A2",
-    "B1",
-    "B2"
+    "Ba",
+    "Bb"
   ]
 }

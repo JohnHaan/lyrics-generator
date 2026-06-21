@@ -1,5 +1,5 @@
 {
-  "title": "나는 주를 섬기는 것에 + 이것이 나의 간증이요",
+  "title": "나는 주를 섬기는 것에+이것이 나의 간증이요",
   "sourceFile": "song.pptx",
   "slides": [
     {
@@ -8,9 +8,9 @@
       "label": "title"
     },
     {
-      "key": "A1",
+      "key": "A1a",
       "index": 1,
-      "label": "A1"
+      "label": "A1a"
     },
     {
       "key": "A1b",
@@ -18,9 +18,9 @@
       "label": "A1b"
     },
     {
-      "key": "A2",
+      "key": "A2a",
       "index": 3,
-      "label": "A2"
+      "label": "A2a"
     },
     {
       "key": "A2b",
@@ -28,14 +28,14 @@
       "label": "A2b"
     },
     {
-      "key": "B1",
+      "key": "Ba",
       "index": 5,
-      "label": "B1"
+      "label": "Ba"
     },
     {
-      "key": "B2",
+      "key": "Bb",
       "index": 6,
-      "label": "B2"
+      "label": "Bb"
     },
     {
       "key": "C",
@@ -45,16 +45,16 @@
   ],
   "order": [
     "title",
-    "A1",
+    "A1a",
     "A1b",
-    "A2",
+    "A2a",
     "A2b",
-    "B1",
-    "B2",
-    "A2",
+    "Ba",
+    "Bb",
+    "A2a",
     "A2b",
-    "B1",
-    "B2",
+    "Ba",
+    "Bb",
     "C"
   ]
 }

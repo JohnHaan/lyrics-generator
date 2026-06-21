@@ -1,5 +1,5 @@
 {
-  "title": "생명 주께 있네 + 멈출 수 없네",
+  "title": "생명 주께 있네+멈출 수 없네",
   "sourceFile": "song.pptx",
   "slides": [
     {
@@ -18,28 +18,23 @@
       "label": "B"
     },
     {
-      "key": "A_outro",
+      "key": "Ca",
       "index": 3,
-      "label": "A_outro"
+      "label": "Ca"
     },
     {
-      "key": "C1",
+      "key": "Cb",
       "index": 4,
-      "label": "C1"
-    },
-    {
-      "key": "C2",
-      "index": 5,
-      "label": "C2"
+      "label": "Cb"
     },
     {
       "key": "D",
-      "index": 6,
+      "index": 5,
       "label": "D"
     },
     {
       "key": "E",
-      "index": 7,
+      "index": 6,
       "label": "E"
     }
   ],
@@ -49,9 +44,9 @@
     "B",
     "A",
     "B",
-    "A_outro",
-    "C1",
-    "C2",
+    "A",
+    "Ca",
+    "Cb",
     "D",
     "E",
     "D",
