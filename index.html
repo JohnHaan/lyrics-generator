@@ -7,53 +7,105 @@
 <style>
   body {
     font-family: -apple-system, "Apple SD Gothic Neo", "맑은 고딕", sans-serif;
-    max-width: 720px;
+    max-width: 960px;
     margin: 40px auto;
     padding: 0 16px;
     color: #222;
   }
   h1 { font-size: 1.4rem; }
-  p.desc { color: #555; line-height: 1.5; }
-  textarea {
-    width: 100%;
-    height: 220px;
-    font-size: 1rem;
-    padding: 10px;
-    box-sizing: border-box;
-    line-height: 1.6;
+  p.desc { color: #555; line-height: 1.5; margin-bottom: 24px; }
+
+  .columns {
+    display: flex;
+    gap: 24px;
   }
-  button {
-    margin-top: 12px;
+  .column {
+    flex: 1;
+    min-width: 0;
+  }
+  .column h2 {
+    font-size: 1rem;
+    color: #444;
+    margin: 0 0 8px;
+  }
+  .box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-height: 360px;
+    padding: 8px;
+    background: #fafafa;
+  }
+
+  .song-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    cursor: grab;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .song-card:active { cursor: grabbing; }
+  .song-card.dragging { opacity: 0.4; }
+
+  #availableSongs .song-card:hover { background: #f0f6ff; border-color: #8ab4f8; }
+
+  #contiList .song-card .order-num {
+    color: #888;
+    font-size: 0.85rem;
+    min-width: 1.5em;
+  }
+  #contiList .song-card .title { flex: 1; }
+  #contiList .song-card .remove-btn {
+    border: none;
+    background: none;
+    color: #999;
+    font-size: 1.1rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 4px;
+  }
+  #contiList .song-card .remove-btn:hover { color: #c00; }
+
+  .box.drag-over { background: #eef5ff; border-color: #8ab4f8; }
+  .empty-hint { color: #999; font-size: 0.9rem; padding: 12px; text-align: center; }
+
+  #generate {
+    margin-top: 16px;
     padding: 10px 20px;
     font-size: 1rem;
     cursor: pointer;
   }
-  #status {
-    margin-top: 16px;
-    white-space: pre-wrap;
-  }
+  #generate:disabled { cursor: default; opacity: 0.6; }
+
+  #status { margin-top: 16px; white-space: pre-wrap; }
   #status.error { color: #c00; }
   #status.success { color: #060; }
-  #songList {
-    margin-top: 24px;
-    font-size: 0.9rem;
-    color: #555;
-  }
 </style>
 </head>
 <body>
   <h1>찬양 콘티 생성기</h1>
   <p class="desc">
-    부를 곡 제목을 한 줄에 하나씩, 순서대로 입력하세요. 제목은 소스 폴더에 등록된 제목과
-    정확히 일치해야 합니다.
+    왼쪽 목록에서 곡을 오른쪽으로 드래그(또는 클릭)해서 순서대로 콘티를 구성하세요.
+    오른쪽 목록 안에서도 드래그로 순서를 바꿀 수 있습니다.
   </p>
-  <textarea id="titles" placeholder="함께 지어져 가네
-생명 주께 있네 + 멈출 수 없네
-실로암"></textarea>
-  <br />
-  <button id="generate">콘티 만들기</button>
+
+  <div class="columns">
+    <div class="column">
+      <h2>등록된 곡</h2>
+      <div id="availableSongs" class="box"></div>
+    </div>
+    <div class="column">
+      <h2>콘티 순서</h2>
+      <div id="contiList" class="box"></div>
+    </div>
+  </div>
+
+  <button id="generate">콘티 다운로드</button>
   <div id="status"></div>
-  <div id="songList"></div>
 
   <script src="vendor/jszip.min.js"></script>
   <script type="module" src="src/app.js"></script>
