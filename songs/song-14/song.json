@@ -1,0 +1,46 @@
+{
+  "title": "내가 어둠 속에서",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "title",
+      "index": 0,
+      "label": "title"
+    },
+    {
+      "key": "slide1",
+      "index": 1,
+      "label": "slide1"
+    },
+    {
+      "key": "slide2",
+      "index": 2,
+      "label": "slide2"
+    },
+    {
+      "key": "slide3",
+      "index": 3,
+      "label": "slide3"
+    },
+    {
+      "key": "slide4",
+      "index": 4,
+      "label": "slide4"
+    },
+    {
+      "key": "slide5",
+      "index": 5,
+      "label": "slide5"
+    }
+  ],
+  "order": [
+    "title",
+    "slide1",
+    "slide2",
+    "slide1",
+    "slide2",
+    "slide3",
+    "slide4",
+    "slide5"
+  ]
+}

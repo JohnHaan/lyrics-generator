@@ -1,0 +1,34 @@
+{
+  "title": "하나님은 너를 지키시는 자",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "title",
+      "index": 0,
+      "label": "title"
+    },
+    {
+      "key": "slide1",
+      "index": 1,
+      "label": "slide1"
+    },
+    {
+      "key": "slide2",
+      "index": 2,
+      "label": "slide2"
+    },
+    {
+      "key": "slide3",
+      "index": 3,
+      "label": "slide3"
+    }
+  ],
+  "order": [
+    "title",
+    "slide1",
+    "slide2",
+    "slide3",
+    "slide1",
+    "slide3"
+  ]
+}
