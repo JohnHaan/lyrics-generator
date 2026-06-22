@@ -8,6 +8,7 @@ const songLibrary = createSongLibrary({ JSZip: window.JSZip });
 const availableEl = document.getElementById("availableSongs");
 const paginationEl = document.getElementById("pagination");
 const searchInput = document.getElementById("songSearch");
+const searchBtn = document.getElementById("songSearchBtn");
 const contiEl = document.getElementById("contiList");
 const statusEl = document.getElementById("status");
 const generateBtn = document.getElementById("generate");
@@ -102,9 +103,18 @@ function renderPagination(totalPages) {
   }
 }
 
-searchInput.addEventListener("input", () => {
+function applySearch() {
   currentPage = 1;
   renderAvailableSongsView();
+}
+
+searchInput.addEventListener("input", applySearch);
+searchBtn.addEventListener("click", applySearch);
+searchInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    applySearch();
+  }
 });
 
 // ---- 오른쪽: 콘티 순서 ----

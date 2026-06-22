@@ -70,11 +70,16 @@
     background: #fafafa;
   }
 
+  .search-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
   #songSearch {
+    flex: 1;
     width: 100%;
     box-sizing: border-box;
     padding: 8px 10px;
-    margin-bottom: 8px;
     font-size: 0.95rem;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -83,6 +88,18 @@
     outline: none;
     border-color: var(--ij-purple);
   }
+  #songSearchBtn {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    background: var(--ij-purple);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  #songSearchBtn:hover { filter: brightness(1.1); }
 
   .pagination {
     display: flex;
@@ -257,7 +274,10 @@
   <div class="columns">
     <div class="column">
       <h2>등록된 곡</h2>
-      <input type="text" id="songSearch" placeholder="제목으로 검색..." />
+      <div class="search-row">
+        <input type="text" id="songSearch" placeholder="제목으로 검색..." />
+        <button id="songSearchBtn" type="button">찾기</button>
+      </div>
       <div id="availableSongs" class="box"></div>
       <div id="pagination" class="pagination"></div>
     </div>
