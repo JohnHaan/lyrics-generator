@@ -6,9 +6,15 @@ import { commitNewSong, TOKEN_STORAGE_KEY } from "./githubCommit.js";
 const songLibrary = createSongLibrary({ JSZip: window.JSZip });
 
 const availableEl = document.getElementById("availableSongs");
+const paginationEl = document.getElementById("pagination");
+const searchInput = document.getElementById("songSearch");
 const contiEl = document.getElementById("contiList");
 const statusEl = document.getElementById("status");
 const generateBtn = document.getElementById("generate");
+
+const PAGE_SIZE = 10;
+let allSongs = []; // songLibrary.listSongs()의 전체 결과
+let currentPage = 1;
 
 const songTitleInput = document.getElementById("songTitle");
 const songFileInput = document.getElementById("songFile");
@@ -30,12 +36,30 @@ function todayDateString() {
   return `${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}`;
 }
 
-// ---- 왼쪽: 등록된 곡 목록 ----
+// ---- 왼쪽: 등록된 곡 목록 (검색 + 페이지네이션) ----
 
-function renderAvailableSongs(songs) {
+function getFilteredSongs() {
+  const query = searchInput.value.trim().toLowerCase();
+  if (!query) return allSongs;
+  return allSongs.filter((song) => song.title.toLowerCase().includes(query));
+}
+
+function renderAvailableSongsView() {
+  const filtered = getFilteredSongs();
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  currentPage = Math.min(Math.max(1, currentPage), totalPages);
+
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const pageSongs = filtered.slice(start, start + PAGE_SIZE);
+
+  renderAvailableSongs(pageSongs, filtered.length);
+  renderPagination(totalPages);
+}
+
+function renderAvailableSongs(songs, totalCount) {
   availableEl.innerHTML = "";
-  if (songs.length === 0) {
-    availableEl.innerHTML = '<div class="empty-hint">등록된 곡이 없습니다</div>';
+  if (totalCount === 0) {
+    availableEl.innerHTML = '<div class="empty-hint">검색 결과가 없습니다</div>';
     return;
   }
   for (const song of songs) {
@@ -61,6 +85,27 @@ function renderAvailableSongs(songs) {
     availableEl.appendChild(card);
   }
 }
+
+function renderPagination(totalPages) {
+  paginationEl.innerHTML = "";
+  if (totalPages <= 1) return;
+
+  for (let page = 1; page <= totalPages; page++) {
+    const btn = document.createElement("button");
+    btn.textContent = String(page);
+    btn.className = page === currentPage ? "active" : "";
+    btn.addEventListener("click", () => {
+      currentPage = page;
+      renderAvailableSongsView();
+    });
+    paginationEl.appendChild(btn);
+  }
+}
+
+searchInput.addEventListener("input", () => {
+  currentPage = 1;
+  renderAvailableSongsView();
+});
 
 // ---- 오른쪽: 콘티 순서 ----
 
@@ -257,8 +302,8 @@ uploadBtn.addEventListener("click", async () => {
 async function init() {
   renderConti();
   try {
-    const songs = await songLibrary.listSongs();
-    renderAvailableSongs(songs);
+    allSongs = await songLibrary.listSongs();
+    renderAvailableSongsView();
   } catch (err) {
     availableEl.innerHTML = `<div class="empty-hint">곡 목록을 불러오지 못했습니다: ${err.message}</div>`;
   }
