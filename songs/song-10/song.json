@@ -1,0 +1,60 @@
+{
+  "title": "주를 찾는 모든 자들이",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "title",
+      "index": 0,
+      "label": "title"
+    },
+    {
+      "key": "Aa",
+      "index": 1,
+      "label": "Aa"
+    },
+    {
+      "key": "Ab",
+      "index": 2,
+      "label": "Ab"
+    },
+    {
+      "key": "Ba",
+      "index": 3,
+      "label": "Ba"
+    },
+    {
+      "key": "Bb",
+      "index": 4,
+      "label": "Bb"
+    },
+    {
+      "key": "Ca",
+      "index": 5,
+      "label": "Ca"
+    },
+    {
+      "key": "Cb",
+      "index": 6,
+      "label": "Cb"
+    }
+  ],
+  "order": [
+    "title",
+    "Aa",
+    "Ab",
+    "Aa",
+    "Ab",
+    "Ba",
+    "Bb",
+    "Aa",
+    "Ab",
+    "Ba",
+    "Bb",
+    "Ba",
+    "Bb",
+    "Ba",
+    "Bb",
+    "Ca",
+    "Cb"
+  ]
+}

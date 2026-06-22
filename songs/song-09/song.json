@@ -1,0 +1,46 @@
+{
+  "title": "예수로 사는 인생",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "title",
+      "index": 0,
+      "label": "title"
+    },
+    {
+      "key": "A1",
+      "index": 1,
+      "label": "A1"
+    },
+    {
+      "key": "Ba",
+      "index": 2,
+      "label": "Ba"
+    },
+    {
+      "key": "Bb",
+      "index": 3,
+      "label": "Bb"
+    },
+    {
+      "key": "A2",
+      "index": 4,
+      "label": "A2"
+    }
+  ],
+  "order": [
+    "title",
+    "A1",
+    "Ba",
+    "Bb",
+    "A2",
+    "Ba",
+    "Bb",
+    "Ba",
+    "Bb",
+    "Ba",
+    "Bb",
+    "Ba",
+    "Bb"
+  ]
+}

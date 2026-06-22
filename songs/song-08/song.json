@@ -1,0 +1,45 @@
+{
+  "title": "내 영혼의 그윽히 깊은 데서",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "title",
+      "index": 0,
+      "label": "title"
+    },
+    {
+      "key": "A1",
+      "index": 1,
+      "label": "A1"
+    },
+    {
+      "key": "A2",
+      "index": 2,
+      "label": "A2"
+    },
+    {
+      "key": "B",
+      "index": 3,
+      "label": "B"
+    },
+    {
+      "key": "A3",
+      "index": 4,
+      "label": "A3"
+    },
+    {
+      "key": "A4",
+      "index": 5,
+      "label": "A4"
+    }
+  ],
+  "order": [
+    "title",
+    "A1",
+    "A2",
+    "B",
+    "A3",
+    "A4",
+    "B"
+  ]
+}

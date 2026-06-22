@@ -1,0 +1,36 @@
+{
+  "title": "사랑하는 나의 아버지",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "title",
+      "index": 0,
+      "label": "title"
+    },
+    {
+      "key": "A",
+      "index": 1,
+      "label": "A"
+    },
+    {
+      "key": "B",
+      "index": 2,
+      "label": "B"
+    },
+    {
+      "key": "C",
+      "index": 3,
+      "label": "C"
+    }
+  ],
+  "order": [
+    "title",
+    "A",
+    "B",
+    "A",
+    "B",
+    "C",
+    "C",
+    "B"
+  ]
+}

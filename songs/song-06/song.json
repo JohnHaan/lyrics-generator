@@ -1,0 +1,39 @@
+{
+  "title": "주의 친절한 팔에 안기세",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "title",
+      "index": 0,
+      "label": "title"
+    },
+    {
+      "key": "A1",
+      "index": 1,
+      "label": "A1"
+    },
+    {
+      "key": "B",
+      "index": 2,
+      "label": "B"
+    },
+    {
+      "key": "A2",
+      "index": 3,
+      "label": "A2"
+    },
+    {
+      "key": "A3",
+      "index": 4,
+      "label": "A3"
+    }
+  ],
+  "order": [
+    "title",
+    "A1",
+    "B",
+    "A2",
+    "A3",
+    "B"
+  ]
+}
