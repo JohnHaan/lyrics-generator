@@ -1,0 +1,62 @@
+{
+  "title": "우리는 주의 움직이는 교회",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "slide1",
+      "index": 0,
+      "label": "slide1"
+    },
+    {
+      "key": "slide2",
+      "index": 1,
+      "label": "slide2"
+    },
+    {
+      "key": "slide3",
+      "index": 2,
+      "label": "slide3"
+    },
+    {
+      "key": "slide4",
+      "index": 3,
+      "label": "slide4"
+    },
+    {
+      "key": "slide5",
+      "index": 4,
+      "label": "slide5"
+    },
+    {
+      "key": "slide6",
+      "index": 5,
+      "label": "slide6"
+    },
+    {
+      "key": "slide7",
+      "index": 6,
+      "label": "slide7"
+    },
+    {
+      "key": "slide8",
+      "index": 7,
+      "label": "slide8"
+    },
+    {
+      "key": "slide9",
+      "index": 8,
+      "label": "slide9"
+    }
+  ],
+  "order": [
+    "slide1",
+    "slide2",
+    "slide3",
+    "slide4",
+    "slide5",
+    "slide6",
+    "slide7",
+    "slide8",
+    "slide9"
+  ]
+}
