@@ -8,31 +8,29 @@
       "label": "title"
     },
     {
-      "key": "slide1",
+      "key": "Aa",
       "index": 1,
-      "label": "slide1"
+      "label": "Aa"
     },
     {
-      "key": "slide2",
+      "key": "Ab",
       "index": 2,
-      "label": "slide2"
+      "label": "Ab"
     },
     {
-      "key": "slide3",
+      "key": "B",
       "index": 3,
-      "label": "slide3"
-    },
-    {
-      "key": "slide4",
-      "index": 4,
-      "label": "slide4"
+      "label": "B"
     }
   ],
   "order": [
     "title",
-    "slide1",
-    "slide2",
-    "slide3",
-    "slide4"
+    "Aa",
+    "Ab",
+    "Aa",
+    "Ab",
+    "B",
+    "B",
+    "B"
   ]
 }
