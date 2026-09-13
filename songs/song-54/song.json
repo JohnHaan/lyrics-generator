@@ -26,6 +26,11 @@
       "key": "slide5",
       "index": 4,
       "label": "slide5"
+    },
+    {
+      "key": "slide6",
+      "index": 5,
+      "label": "slide6"
     }
   ],
   "order": [
@@ -33,6 +38,7 @@
     "slide2",
     "slide3",
     "slide4",
-    "slide5"
+    "slide5",
+    "slide6"
   ]
 }
