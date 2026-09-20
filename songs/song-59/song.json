@@ -1,0 +1,32 @@
+{
+  "title": "나는 예배자입니다",
+  "sourceFile": "song.pptx",
+  "slides": [
+    {
+      "key": "slide1",
+      "index": 0,
+      "label": "slide1"
+    },
+    {
+      "key": "slide2",
+      "index": 1,
+      "label": "slide2"
+    },
+    {
+      "key": "slide3",
+      "index": 2,
+      "label": "slide3"
+    },
+    {
+      "key": "slide4",
+      "index": 3,
+      "label": "slide4"
+    }
+  ],
+  "order": [
+    "slide1",
+    "slide2",
+    "slide3",
+    "slide4"
+  ]
+}
